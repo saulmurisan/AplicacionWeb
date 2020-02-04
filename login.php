@@ -13,10 +13,16 @@
     $count = mysqli_num_rows($registros);
     if ($count != 1) {
         header('location: index.php?error=Usuario o Contraseña Incorrectos');
-    } else {
+    } if ($usuario = 'Admin') {
         session_start();
         $_SESSION['usuario'] = $usuario; 
         $_SESSION['estado'] = 'Autenticado';
         header('location: administracion.php');
+    }
+    } else {
+        session_start();
+        $_SESSION['usuario'] = $usuario; 
+        $_SESSION['estado'] = 'Autenticado';
+        header('location: usulogued.php');
     }
 ?>
