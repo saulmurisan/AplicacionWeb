@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Visualizacion</title>
+    <title>Aplicación Web IAW</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
             <!-- Bootstrap CSS -->
             <link rel="stylesheet"
@@ -72,7 +72,7 @@
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">				
-				<h4 class="modal-title">Administrador</h4>
+				<h4 class="modal-title">Login</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
@@ -81,7 +81,7 @@
 						<input type="text" class="form-control" placeholder="Usuario" id="usuario" name="usuario" required="required">
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control" placeholder="Contraseña" id="contraseña" name="contraseña" required="required">
+						<input type="password" class="form-control" placeholder="Contraseña" id="contrasena" name="contrasena" required="required">
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary btn-block btn-lg" value="Iniciar Sesión">
@@ -95,8 +95,8 @@
 
 
 <div class="container" >
-            <div style="position: relative; float: left; width: 350px"><h2>Estación Meteorológica</h2></div>
-			<div style="position: relative; float: right; padding-top: 15px; width: 150px"><a href="#myModal" class="btn btn-primary btn-lg" data-toggle="modal">Administrador</a>           
+            <div style="position: relative; float: left; width: 350px"><h2>Aplicación Web IAW</h2></div>
+			<div style="position: relative; float: right; padding-top: 15px; width: 150px"><a href="#myModal" class="btn btn-primary btn-lg" data-toggle="modal">Login</a>           
 			 	<?php
                 if (isset($_REQUEST["error"])) {
                     print "<p style='color: red'> $_REQUEST[error] </p>";
@@ -111,16 +111,11 @@
 					<tr>
 						<td>
 							<div class="form-group">
-                    			<label style="color: white" for="fechades" >Fecha desde: </label>
-                    			<input type="date" class="form-control" name="fecdes" id="fecdes" required>
+                    			<label style="color: white" for="fechades" >Fecha de subida: </label>
+                    			<input type="date" class="form-control" name="fecha" id="fecha" required>
 							</div>
 						</td>
-						<td>
-							<div class="form-group">
-                    			<label style="color: white" for="fechahas">Fecha hasta: </label>
-                    			<input type="date" class="form-control" name="fechahas" id="fechahas" required>
-                			</div>
-						</td>
+						
 						<td rowspan="2">
 							<div>
                     			<input style="height: 175px" type="submit" class="btn btn-primary btn-block" value="Buscar">
@@ -130,48 +125,38 @@
 					<tr>
 						<td>
 							<div class="form-group">
-                    			<label style="color: white" for="medida">Tipo Medida: </label>
-                    			<select name="medida" class="form-control">
+                    			<label style="color: white" for="medida">Usuario: </label>
+                    			<select name="usuario" class="form-control">
 							</div> 
 								<?php
-								$conexion = mysqli_connect("localhost", "root", "", "estacion") 
+								$conexion = mysqli_connect("localhost", "root", "", "munozmurillo") 
 									or die("Problemas de conexion");
 
-								$registros = mysqli_query($conexion, "SELECT Id, Nombre FROM variables")
+								$registros = mysqli_query($conexion, "SELECT usuario FROM usuarios")
 									or die("Problemas en el select".mysqli_error($conexion));
 
 								while ($reg = mysqli_fetch_array($registros)) {
-									echo "<option value='$reg[Nombre]'>$reg[Nombre]</option>";
+									echo "<option value='$reg[usuario]'>$reg[usuario]</option>";
 								}
 							?>
       						</select>
-						</td>
-						<td>
-							<div class="form-group">
-                    			<label style="color: white" for="valormed">Valor Medida: </label>
-                    			<input type="number" class="form-control" name="valormed" id="valormed">
-                			</div>
 						</td>
 					</tr>
 				</table> 
             </form>
 
 <?php
-$conexion = mysqli_connect("localhost", "root", "", "estacion") or die("Problemas con la conexión");
-$registros = mysqli_query($conexion, "SELECT me.Fecha_Hora, va.Nombre, me.Valor, va.Ud_Med, se.Modelo 
-                                        FROM medidas as me INNER JOIN sensores as se on me.Sensores_Id = se.Id
-                                        INNER JOIN variables as va on me.Variables_Id = va.Id")
+$conexion = mysqli_connect("localhost", "root", "", "munozmurillo") or die("Problemas con la conexión");
+$registros = mysqli_query($conexion, "SELECT usuario, foto, fecha FROM fotos")
     or die("Problemas en la consulta:".mysqli_error($conexion));
      
 echo "<table class='table table-striped' style='background-color: white'>";
-echo "<tr><th>Fecha</th><th>Tipo</th><th>Valor</th><th>Unidad</th><th>Sensor</th>";
+echo "<tr><th>Usuario</th><th>Foto</th><th>Fecha</th>";
 while ($reg = mysqli_fetch_array($registros)) {
     echo "<tr>";
-        echo "<td>" . $reg['Fecha_Hora'] . "</td>";
-        echo "<td>" . $reg['Nombre'] . "</td>";
-        echo "<td>" . $reg['Valor'] . "</td>";
-        echo "<td>" . $reg['Ud_Med'] . "</td>";
-        echo "<td>" . $reg['Modelo'] . "</td>";
+        echo "<td>" . $reg['usuario'] . "</td>";
+        echo "<td>" . $reg['foto'] . "</td>";
+        echo "<td>" . $reg['fecha'] . "</td>";
     echo "</tr>";
 }
 echo "</table>";
