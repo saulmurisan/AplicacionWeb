@@ -93,9 +93,11 @@
 	</div>
 </div> 
 
-
 <div class="container" >
             <div style="position: relative; float: left; width: 350px"><h2>Aplicación Web IAW</h2></div>
+			<div style="position: relative; float: right; padding-top: 15px; width: 150px">
+                <a href="formreg.php" class="btn btn-primary btn-lg">Registrarse</a>
+			</div>
 			<div style="position: relative; float: right; padding-top: 15px; width: 150px"><a href="#myModal" class="btn btn-primary btn-lg" data-toggle="modal">Login</a>           
 			 	<?php
                 if (isset($_REQUEST["error"])) {

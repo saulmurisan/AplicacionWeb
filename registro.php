@@ -7,15 +7,17 @@
     $conexion = mysqli_connect("localhost", "root", "", "munozmurillo")
     or die("Problemas en la conexion");
 
-    $consulta = "SELECT * FROM usuarios WHERE usuario='$usuario'";
+    /*$consulta = "SELECT * FROM usuarios WHERE nombre='$usuario'";*/
 
-    $inserusu = "INSERT INTO usuarios (usuario, contrasena, email) VALUES ($usuario, $contra1, $email)";
+    $inserusu = "INSERT INTO usuarios (nombre, contrasena, email) VALUES ('$usuario', '$contra1', '$email')";
 
     if ($contra1 != $contra2) {
         header('location: formreg.php?error=Las contrasenas no coinciden');
-    } if ($usuario = $consulta) {
-        header('location: formreg.php?error=El usuario ya existe');
+    /*} if ($usuario = $consulta) {
+        header('location: formreg.php?error=El usuario ya existe');*/
     } else {
         mysqli_query($conexion, $inserusu) or die(mysqli_error($conexion));
+        header('location: index.php');
+        echo "<p class='alert alert-success agileits' role='alert'>Usuario creado correctamente</p>";
     }
 ?>
