@@ -1,48 +1,41 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REGISTRO DE USUARIOS</title>
+</head>
+<body>
+    
+<form action="registro.php" method="POST"> 
+ <hr />
+ <h3>Crea una cuenta</h3>
 
- $host_db = "localhost";
- $user_db = "root";
- $pass_db = "";
- $db_name = "munozmurillo";
- $tbl_name = "usuarios";
- 
- $conexion = new mysqli($host_db, $user_db, $pass_db, $db_name);
+ <!--Nombre Usuario-->
+ <label for="nombre">Nombre de Usuario:</label><br>
+ <input type="text" name="usuario" id="usuario" maxlength="50" required>
+ <br/><br/>
 
- if ($conexion->connect_error) {
- die("La conexion falló: " . $conexion->connect_error);
-}
+<!--Email-->
+<label for="email">Email:</label><br>
+<input type="email" name="email" id="email" maxlength="50" required>
+<br/><br/>
 
- $buscarUsuario = "SELECT * FROM $tbl_name
- WHERE nombre_usuario = '$_POST[usuario]' ";
+ <!--Contraseña1-->
+ <label for="contra1">Contraseña:</label><br>
+ <input type="password" name="contra1" id="contra1" maxlength="50" required>
 
- $result = $conexion->query($buscarUsuario);
 
- $count = mysqli_num_rows($result);
+ <br/><br/>
+ <!--Contraseña2-->
+ <label for="contra2">Repetir contraseña:</label><br>
+ <input type="password" name="contra2" id="contra2" maxlength="50" required>
 
- if ($count == 1) {
- echo "<br />". "El Nombre de Usuario ya a sido utilizado." . "<br />";
+ <br/><br/>
+ <input type="submit" name="submit" value="Registrarme">
+ <input type="reset" name="clear" value="Borrar">
+ </form>
 
- echo "<a href='index.php'>Por favor escoga otro Nombre</a>";
- }
- else{
-
- $form_pass = $_POST['contrasena'];
- 
- $hash = password_hash($form_pass, PASSWORD_BCRYPT);
-
- $query = "INSERT INTO Usuarios (nombre, contrasena, email)
-           VALUES ('$_POST[usuario]', '$_POST[contrasena]', '$_POST[email]')";
-
- if ($conexion->query($query) === TRUE) {
- 
- echo "<br />" . "<h2>" . "Usuario Creado Exitosamente!" . "</h2>";
- echo "<h4>" . "Bienvenido: " . $_POST['usuario'] . "</h4>" . "\n\n";
- echo "<h5>" . "Hacer Login: " . "<a href='index.php'>Login</a>" . "</h5>"; 
- }
-
- else {
- echo "Error al crear el usuario." . $query . "<br>" . $conexion->error; 
-   }
- }
- mysqli_close($conexion);
-?>
+</body>
+</html>
