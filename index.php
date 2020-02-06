@@ -1,3 +1,4 @@
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +69,7 @@
 <body style="background-color: #232327; color: white">
 <!-- Modal Login -->
 
-<div id="myModal" class="modal fade" style="color: black">
+<div id="blogin" class="modal fade" style="color: black">
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">				
@@ -93,13 +94,68 @@
 	</div>
 </div> 
 <!-- Fin Modal Login -->
+
+<!--Modal registro-->
+<div id="bregistro" class="modal fade" style="color: black">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+			<div class="modal-header">				
+				<h4 class="modal-title">Registro</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form action="registro.php" method="post">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Usuario" id="usuario" name="usuario" required="required">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="Contraseña" id="contra1" name="contra1" required="required">
+					</div>
+
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="Repetir Contraseña" id="contra2" name="contra2" required="required">
+					</div>
+
+					<div class="form-group">
+						<input type="email" class="form-control" placeholder="Email" id="email" name="email" required="required">
+					</div>
+
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary btn-block btn-lg" value="Registrarse">
+					</div>
+				</form>				
+
+			</div>
+		</div>
+	</div>
+</div> 
+<!--Fin Modal registro-->
+
 <div class="container" >
             <div style="position: relative; float: left; width: 350px"><h2>Aplicación Web IAW</h2></div>
+			
+		<!--Botón Modal Registro-->
+		
+		<div style="position: relative; float: right; padding-top: 15px; width: 150px"><a href="#bregistro" class="btn btn-primary btn-lg" data-toggle="modal">Registrar</a>           
+			 	<?php
+                if (isset($_REQUEST["error"])) {
+                    print "<p style='color: red'> $_REQUEST[error] </p>";
+                }
+				?>
+			</div>
+		
+		<!--Fin botón modal-->
+			
+			<!--
 			<div style="position: relative; float: right; padding-top: 15px; width: 150px">
                 <a href="formreg.php" class="btn btn-primary btn-lg">Registrarse</a>
-			</div>
+			</div>-->
+
+
+
+
 			<!-- Botón modal logueo -->
-			<div style="position: relative; float: right; padding-top: 15px; width: 150px"><a href="#myModal" class="btn btn-primary btn-lg" data-toggle="modal">Login</a>           
+			<div style="position: relative; float: right; padding-top: 15px; width: 150px"><a href="#blogin" class="btn btn-primary btn-lg" data-toggle="modal">Login</a>           
 			 	<?php
                 if (isset($_REQUEST["error"])) {
                     print "<p style='color: red'> $_REQUEST[error] </p>";
@@ -107,6 +163,7 @@
 				?>
 			</div>
 			<!-- Fin botón modal logueo -->
+
 			<!-- Formulario para ver las fotos -->
 			<div style="position: relative; clear: both">
 			<br/><br/>
@@ -184,4 +241,3 @@ mysqli_close($conexion);
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 </body>
-</html>
