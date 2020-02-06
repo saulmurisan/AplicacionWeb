@@ -7,18 +7,17 @@
     $conexion = mysqli_connect("localhost", "root", "", "munozmurillo")
     or die("Problemas en la conexion");
     
-    $consulta = "SELECT * FROM administradores WHERE usuario='$usuario' AND contrasena='$contrasena'";
+    $consulta = "SELECT * FROM usuarios WHERE nombre='$usuario' AND contrasena='$contrasena'";
     
     $registros = mysqli_query($conexion, $consulta) or die(mysqli_error($conexion));
     $count = mysqli_num_rows($registros);
     if ($count != 1) {
         header('location: index.php?error=Usuario o Contraseña Incorrectos');
-    } if ($usuario = 'Admin') {
+    } if ($usuario == 'Admin') {
         session_start();
         $_SESSION['usuario'] = $usuario; 
         $_SESSION['estado'] = 'Autenticado';
         header('location: administracion.php');
-    }
     } else {
         session_start();
         $_SESSION['usuario'] = $usuario; 

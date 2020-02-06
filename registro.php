@@ -17,7 +17,6 @@
         header('location: formreg.php?error=El usuario ya existe');*/
     } else {
         mysqli_query($conexion, $inserusu) or die(mysqli_error($conexion));
-        header('location: index.php');
-        echo "<p class='alert alert-success agileits' role='alert'>Usuario creado correctamente</p>";
+        header('location: usulogued.php');
     }
 ?>
