@@ -1,4 +1,3 @@
-  
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,8 +86,7 @@
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary btn-block btn-lg" value="Iniciar Sesión">
 					</div>
-				</form>				
-
+				</form>			
 			</div>
 		</div>
 	</div>
@@ -111,20 +109,16 @@
 					<div class="form-group">
 						<input type="password" class="form-control" placeholder="Contraseña" id="contra1" name="contra1" required="required">
 					</div>
-
 					<div class="form-group">
 						<input type="password" class="form-control" placeholder="Repetir Contraseña" id="contra2" name="contra2" required="required">
 					</div>
-
 					<div class="form-group">
 						<input type="email" class="form-control" placeholder="Email" id="email" name="email" required="required">
 					</div>
-
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary btn-block btn-lg" value="Registrarse">
 					</div>
 				</form>				
-
 			</div>
 		</div>
 	</div>
@@ -145,15 +139,6 @@
 			</div>
 		
 		<!--Fin botón modal-->
-			
-			<!--
-			<div style="position: relative; float: right; padding-top: 15px; width: 150px">
-                <a href="formreg.php" class="btn btn-primary btn-lg">Registrarse</a>
-			</div>-->
-
-
-
-
 			<!-- Botón modal logueo -->
 			<div style="position: relative; float: right; padding-top: 15px; width: 150px"><a href="#blogin" class="btn btn-primary btn-lg" data-toggle="modal">Login</a>           
 			 	<?php
@@ -176,7 +161,6 @@
                     			<input type="date" class="form-control" name="fecha" id="fecha" required>
 							</div>
 						</td>
-						
 						<td rowspan="2">
 							<div>
                     			<input style="height: 175px" type="submit" class="btn btn-primary btn-block" value="Buscar">

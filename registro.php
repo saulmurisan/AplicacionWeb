@@ -17,6 +17,9 @@
         header('location: formreg.php?error=El usuario ya existe');*/
     } else {
         mysqli_query($conexion, $inserusu) or die(mysqli_error($conexion));
+        session_start();
+        $_SESSION['usuario'] = $usuario; 
+        $_SESSION['estado'] = 'Autenticado';
         header('location: usulogued.php');
     }
 ?>

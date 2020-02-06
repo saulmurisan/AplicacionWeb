@@ -96,6 +96,13 @@
 <div class="container" >
             <div style="position: relative; float: left; width: 350px"><h2>Aplicación Web IAW</h2></div>
 			<div style="position: relative; float: right; padding-top: 15px; width: 150px">
+				<input type="text" REQUIRED disable class="form-control" id="idsuario" 
+					value="<?php 
+								session_start();
+								print $_SESSION['usuario'];
+							?>">
+			</div>
+			<div style="position: relative; float: right; padding-top: 15px; width: 150px">
                 <a href="formfoto.php" class="btn btn-primary btn-lg">Publicar fotos</a>
 			</div>
 			<div style="position: relative; float: right; padding-top: 15px; width: 150px">
