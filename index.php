@@ -66,7 +66,7 @@
 </style>
 </head>
 <body style="background-color: #232327; color: white">
-<!-- Modal HTML -->
+<!-- Modal Login -->
 
 <div id="myModal" class="modal fade" style="color: black">
 	<div class="modal-dialog modal-login">
@@ -92,12 +92,13 @@
 		</div>
 	</div>
 </div> 
-
+<!-- Fin Modal Login -->
 <div class="container" >
             <div style="position: relative; float: left; width: 350px"><h2>Aplicación Web IAW</h2></div>
 			<div style="position: relative; float: right; padding-top: 15px; width: 150px">
                 <a href="formreg.php" class="btn btn-primary btn-lg">Registrarse</a>
 			</div>
+			<!-- Botón modal logueo -->
 			<div style="position: relative; float: right; padding-top: 15px; width: 150px"><a href="#myModal" class="btn btn-primary btn-lg" data-toggle="modal">Login</a>           
 			 	<?php
                 if (isset($_REQUEST["error"])) {
@@ -105,10 +106,11 @@
                 }
 				?>
 			</div>
-			
+			<!-- Fin botón modal logueo -->
+			<!-- Formulario para ver las fotos -->
 			<div style="position: relative; clear: both">
 			<br/><br/>
-            <form action="inicio.php" method="post">
+            <form action="index.php" method="post">
 			<table style="border: 0px"class="table">
 					<tr>
 						<td>
@@ -146,7 +148,8 @@
 					</tr>
 				</table> 
             </form>
-
+			<!-- Fin formulario fotos -->
+<!-- PHP para mostrar fotos -->
 <?php
 $conexion = mysqli_connect("localhost", "root", "", "munozmurillo") or die("Problemas con la conexión");
 $registros = mysqli_query($conexion, "SELECT usuario, foto, fecha FROM fotos")
@@ -165,6 +168,7 @@ echo "</table>";
                 
 mysqli_close($conexion);
 ?>
+<!-- Fin PHP mostrar fotos -->
 
 <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS a-->
