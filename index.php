@@ -67,7 +67,6 @@
 </head>
 <body style="background-color: #232327; color: white">
 <!-- Modal Login -->
-
 <div id="blogin" class="modal fade" style="color: black">
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
@@ -170,7 +169,7 @@
 					<tr>
 						<td>
 							<div class="form-group">
-                    			<label style="color: white" for="medida">Usuario: </label>
+                    			<label style="color: white" for="usufoto">Usuario: </label>
                     			<select name="usuario" class="form-control">
 							</div> 
 								<?php

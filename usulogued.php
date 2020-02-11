@@ -68,46 +68,58 @@
 <body style="background-color: #232327; color: white">
 <!-- Modal HTML -->
 
-<div id="myModal" class="modal fade" style="color: black">
+<!-- Modal Login -->
+<div id="editardatos" class="modal fade" style="color: black">
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">				
-				<h4 class="modal-title">Login</h4>
+				<h4 class="modal-title">Editar datos</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
-				<form action="login.php" method="post">
+				<form action="formedit.php" method="post">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Usuario" id="usuario" name="usuario" required="required">
+						<input type="text" class="form-control" placeholder="Usuario" id="usuario" name="usuario" value="<?php 
+								session_start();
+								print $_SESSION['usuario'];
+							?>" required="required">
 					</div>
 					<div class="form-group">
 						<input type="password" class="form-control" placeholder="Contraseña" id="contrasena" name="contrasena" required="required">
 					</div>
 					<div class="form-group">
+						<input type="email" class="form-control" placeholder="Email" id="email" name="email" required="required">
+					</div>
+					<div class="form-group">
 						<input type="submit" class="btn btn-primary btn-block btn-lg" value="Iniciar Sesión">
 					</div>
-				</form>				
-
+				</form>			
 			</div>
 		</div>
 	</div>
 </div> 
+<!-- Fin Modal Login -->
 
 <div class="container" >
             <div style="position: relative; float: left; width: 350px"><h2>Aplicación Web IAW</h2></div>
-			<div style="position: relative; float: right; padding-top: 15px; width: 150px">
-				<input type="text" REQUIRED disable class="form-control" id="idsuario" 
-					value="<?php 
-								session_start();
+			<div style="position: relative; float: right; padding-left: 15px; padding-top: 15px; width: 150px">
+				<p>Estás conectado como <?php
 								print $_SESSION['usuario'];
-							?>">
+							?></p>
 			</div>
 			<div style="position: relative; float: right; padding-top: 15px; width: 150px">
                 <a href="formfoto.php" class="btn btn-primary btn-lg">Publicar fotos</a>
 			</div>
-			<div style="position: relative; float: right; padding-top: 15px; width: 150px">
-                <a href="formedit.php" class="btn btn-primary btn-lg">Editar datos</a>
+			<!--Fin botón modal-->
+			<!-- Botón modal editar datos -->
+			<div style="position: relative; float: right; padding-top: 15px; width: 150px"><a href="#editardatos" class="btn btn-primary btn-lg" data-toggle="modal">Editar datos</a>           
+			 	<?php
+                if (isset($_REQUEST["error"])) {
+                    print "<p style='color: red'> $_REQUEST[error] </p>";
+                }
+				?>
 			</div>
+			<!-- Fin botón modal editar datos -->
 			
 			<div style="position: relative; clear: both">
 			<br/><br/>
@@ -130,7 +142,7 @@
 					<tr>
 						<td>
 							<div class="form-group">
-                    			<label style="color: white" for="medida">Usuario: </label>
+                    			<label style="color: white" for="usufoto">Usuario: </label>
                     			<select name="usuario" class="form-control">
 							</div> 
 								<?php

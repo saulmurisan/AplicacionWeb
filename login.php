@@ -8,7 +8,6 @@
     or die("Problemas en la conexion");
     
     $consulta = "SELECT * FROM usuarios WHERE nombre='$usuario' AND contrasena='$contrasena'";
-    
     $registros = mysqli_query($conexion, $consulta) or die(mysqli_error($conexion));
     $count = mysqli_num_rows($registros);
     if ($count != 1) {
@@ -20,7 +19,7 @@
         header('location: administracion.php');
     } else {
         session_start();
-        $_SESSION['usuario'] = $usuario; 
+        $_SESSION['usuario'] = $usuario;
         $_SESSION['estado'] = 'Autenticado';
         header('location: usulogued.php');
     }
