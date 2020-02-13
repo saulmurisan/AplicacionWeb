@@ -192,8 +192,16 @@
 <!-- PHP para mostrar fotos -->
 <?php
 $conexion = mysqli_connect("localhost", "root", "", "munozmurillo") or die("Problemas con la conexión");
-$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos")
+if (isset($_REQUEST["usufoto"])) {
+	$autor = trim(htmlspecialchars($_REQUEST["usufoto"], ENT_QUOTES, "UTF-8"));
+}
+if (isset($_REQUEST["usufoto"]) && !empty($_REQUEST["usufoto"])) {
+	$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos WHERE usuario='$autor'")
     or die("Problemas en la consulta:".mysqli_error($conexion));
+} else {
+	$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos")
+    or die("Problemas en la consulta:".mysqli_error($conexion));
+}
      
 echo "<table class='table table-striped' style='background-color: white'>";
 echo "<tr><th>Usuario</th><th>Foto</th><th>Fecha</th>";

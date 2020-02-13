@@ -146,7 +146,7 @@
 						<td>
 							<div class="form-group">
                     			<label style="color: white" for="usufoto">Usuario: </label>
-                    			<select name="usuario" class="form-control">
+                    			<select name="usufoto" id="usufoto" class="form-control">
 							</div> 
 								<?php
 								$conexion = mysqli_connect("localhost", "root", "", "munozmurillo") 
@@ -167,9 +167,17 @@
 <!-- Consulta y mostrar fotos -->
 <?php
 $conexion = mysqli_connect("localhost", "root", "", "munozmurillo") or die("Problemas con la conexión");
-$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos")
+if (isset($_REQUEST["usufoto"])) {
+	$autor = trim(htmlspecialchars($_REQUEST["usufoto"], ENT_QUOTES, "UTF-8"));
+}
+if (isset($_REQUEST["usufoto"]) && !empty($_REQUEST["usufoto"])) {
+	$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos WHERE usuario='$autor'")
     or die("Problemas en la consulta:".mysqli_error($conexion));
-     
+} else {
+	$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos")
+    or die("Problemas en la consulta:".mysqli_error($conexion));
+}
+
 echo "<table class='table table-striped' style='background-color: white'>";
 echo "<tr><th>Usuario</th><th>Foto</th><th>Fecha</th>";
 while ($reg = mysqli_fetch_array($registros)) {
