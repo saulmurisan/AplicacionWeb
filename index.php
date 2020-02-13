@@ -156,8 +156,8 @@
 					<tr>
 						<td>
 							<div class="form-group">
-                    			<label style="color: white" for="fechades" >Fecha de subida: </label>
-                    			<input type="date" class="form-control" name="fecha" id="fecha" required>
+                    			<label style="color: white" for="fechasubida" >Fecha de subida: </label>
+                    			<input type="date" class="form-control" name="fechasubida" id="fechasubida">
 							</div>
 						</td>
 						<td rowspan="2">
@@ -176,7 +176,7 @@
 								$conexion = mysqli_connect("localhost", "root", "", "munozmurillo") 
 									or die("Problemas de conexion");
 
-								$registros = mysqli_query($conexion, "SELECT usuario FROM usuarios")
+								$registros = mysqli_query($conexion, "SELECT usuario FROM fotos")
 									or die("Problemas en el select".mysqli_error($conexion));
 
 								while ($reg = mysqli_fetch_array($registros)) {
@@ -192,7 +192,7 @@
 <!-- PHP para mostrar fotos -->
 <?php
 $conexion = mysqli_connect("localhost", "root", "", "munozmurillo") or die("Problemas con la conexión");
-$registros = mysqli_query($conexion, "SELECT usuario, foto, fecha FROM fotos")
+$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos")
     or die("Problemas en la consulta:".mysqli_error($conexion));
      
 echo "<table class='table table-striped' style='background-color: white'>";
@@ -200,7 +200,7 @@ echo "<tr><th>Usuario</th><th>Foto</th><th>Fecha</th>";
 while ($reg = mysqli_fetch_array($registros)) {
     echo "<tr>";
         echo "<td>" . $reg['usuario'] . "</td>";
-        echo "<td>" . $reg['foto'] . "</td>";
+        echo "<td>" . "<img src='usuarios\\".$reg['usuario']."\\".$reg['nombre'].".jpg'/>" . "</td>";
         echo "<td>" . $reg['fecha'] . "</td>";
     echo "</tr>";
 }

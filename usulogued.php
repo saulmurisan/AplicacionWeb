@@ -101,7 +101,7 @@
 <!-- Fin Modal Login -->
 
 <div class="container" >
-            <div style="position: relative; float: left; width: 350px"><h2>Aplicación Web IAW</h2></div>
+            <div style="position: relative; float: left; width: 300px"><h2>Aplicación Web IAW</h2></div>
 			<div style="position: relative; float: right; padding-left: 15px; padding-top: 15px; width: 150px">
 				<p>Estás conectado como <?php
 								print $_SESSION['usuario'];
@@ -109,6 +109,9 @@
 			</div>
 			<div style="position: relative; float: right; padding-top: 15px; width: 150px">
                 <a href="formfoto.php" class="btn btn-primary btn-lg">Publicar fotos</a>
+			</div>
+			<div style="position: relative; float: right; padding-top: 15px; width: 150px">
+                <a href="logout.php" class="btn btn-primary btn-lg">Cerrar sesión</a>
 			</div>
 			<!--Fin botón modal-->
 			<!-- Botón modal editar datos -->
@@ -123,13 +126,13 @@
 			
 			<div style="position: relative; clear: both">
 			<br/><br/>
-            <form action="inicio.php" method="post">
+            <form action="usulogued.php" method="post">
 			<table style="border: 0px"class="table">
 					<tr>
 						<td>
 							<div class="form-group">
-                    			<label style="color: white" for="fechades" >Fecha de subida: </label>
-                    			<input type="date" class="form-control" name="fecha" id="fecha" required>
+                    			<label style="color: white" for="fechasubida" >Fecha de subida: </label>
+                    			<input type="date" class="form-control" name="fechasubida" id="fechasubida">
 							</div>
 						</td>
 						
@@ -149,7 +152,7 @@
 								$conexion = mysqli_connect("localhost", "root", "", "munozmurillo") 
 									or die("Problemas de conexion");
 
-								$registros = mysqli_query($conexion, "SELECT usuario FROM usuarios")
+								$registros = mysqli_query($conexion, "SELECT usuario FROM fotos")
 									or die("Problemas en el select".mysqli_error($conexion));
 
 								while ($reg = mysqli_fetch_array($registros)) {
@@ -161,10 +164,10 @@
 					</tr>
 				</table> 
             </form>
-
+<!-- Consulta y mostrar fotos -->
 <?php
 $conexion = mysqli_connect("localhost", "root", "", "munozmurillo") or die("Problemas con la conexión");
-$registros = mysqli_query($conexion, "SELECT usuario, foto, fecha FROM fotos")
+$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos")
     or die("Problemas en la consulta:".mysqli_error($conexion));
      
 echo "<table class='table table-striped' style='background-color: white'>";
@@ -172,7 +175,7 @@ echo "<tr><th>Usuario</th><th>Foto</th><th>Fecha</th>";
 while ($reg = mysqli_fetch_array($registros)) {
     echo "<tr>";
         echo "<td>" . $reg['usuario'] . "</td>";
-        echo "<td>" . $reg['foto'] . "</td>";
+        echo "<td>" . "<img src='usuarios\\".$reg['usuario']."\\".$reg['nombre'].".jpg'/>" . "</td>";
         echo "<td>" . $reg['fecha'] . "</td>";
     echo "</tr>";
 }
