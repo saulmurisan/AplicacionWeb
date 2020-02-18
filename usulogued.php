@@ -135,10 +135,9 @@
                     			<input type="date" class="form-control" name="fechasubida" id="fechasubida">
 							</div>
 						</td>
-						
-						<td rowspan="2">
+						<td>
 							<div>
-                    			<input style="height: 175px" type="submit" class="btn btn-primary btn-block" value="Buscar">
+                    			<input style="height: 75px" type="submit" class="btn btn-primary btn-block" value="Buscar">
 							</div>
 						</td>
 					</tr>
@@ -160,6 +159,11 @@
 								}
 							?>
       						</select>
+						</td>
+						<td>
+							<div>
+                    			<input style="height: 75px" type="reset" class="btn btn-primary btn-block" value="Reiniciar">
+							</div>
 						</td>
 					</tr>
 				</table> 

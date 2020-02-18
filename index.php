@@ -160,9 +160,9 @@
                     			<input type="date" class="form-control" name="fechasubida" id="fechasubida">
 							</div>
 						</td>
-						<td rowspan="2">
+						<td>
 							<div>
-                    			<input style="height: 175px" type="submit" class="btn btn-primary btn-block" value="Buscar">
+                    			<input style="height: 75px" type="submit" class="btn btn-primary btn-block" value="Buscar">
 							</div>
 						</td>
 					</tr>
@@ -170,7 +170,7 @@
 						<td>
 							<div class="form-group">
                     			<label style="color: white" for="usufoto">Usuario: </label>
-                    			<select name="usuario" class="form-control">
+                    			<select name="usufoto" id="usufoto" class="form-control">
 							</div> 
 								<?php
 								$conexion = mysqli_connect("localhost", "root", "", "munozmurillo") 
@@ -185,11 +185,15 @@
 							?>
       						</select>
 						</td>
+						<td>
+							<div>
+                    			<input style="height: 75px" type="button" class="btn btn-primary btn-block" value="Reiniciar" onClick="location.reload()">
+							</div>
+						</td>
 					</tr>
 				</table> 
             </form>
-			<!-- Fin formulario fotos -->
-<!-- PHP para mostrar fotos -->
+<!-- Consulta y mostrar fotos -->
 <?php
 $conexion = mysqli_connect("localhost", "root", "", "munozmurillo") or die("Problemas con la conexión");
 if (isset($_REQUEST["usufoto"])) {
@@ -202,7 +206,7 @@ if (isset($_REQUEST["usufoto"]) && !empty($_REQUEST["usufoto"])) {
 	$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos")
     or die("Problemas en la consulta:".mysqli_error($conexion));
 }
-     
+
 echo "<table class='table table-striped' style='background-color: white'>";
 echo "<tr><th>Usuario</th><th>Foto</th><th>Fecha</th>";
 while ($reg = mysqli_fetch_array($registros)) {
