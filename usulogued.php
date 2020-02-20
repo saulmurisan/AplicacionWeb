@@ -147,11 +147,12 @@
                     			<label style="color: white" for="usufoto">Usuario: </label>
                     			<select name="usufoto" id="usufoto" class="form-control">
 							</div> 
+								<option value=""></option>
 								<?php
 								$conexion = mysqli_connect("localhost", "root", "", "munozmurillo") 
 									or die("Problemas de conexion");
 
-								$registros = mysqli_query($conexion, "SELECT usuario FROM fotos")
+								$registros = mysqli_query($conexion, "SELECT DISTINCT usuario FROM fotos ORDER BY usuario")
 									or die("Problemas en el select".mysqli_error($conexion));
 
 								while ($reg = mysqli_fetch_array($registros)) {
@@ -178,7 +179,7 @@ if (isset($_REQUEST["usufoto"]) && !empty($_REQUEST["usufoto"])) {
 	$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos WHERE usuario='$autor'")
     or die("Problemas en la consulta:".mysqli_error($conexion));
 } else {
-	$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos")
+	$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos ORDER BY fecha")
     or die("Problemas en la consulta:".mysqli_error($conexion));
 }
 

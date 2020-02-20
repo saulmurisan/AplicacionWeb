@@ -69,7 +69,7 @@
 <div class="container" >
     <div style="position: relative; float: left; width: 300px"><h2>Aplicación Web IAW</h2></div>
     <div class="modal-body">
-		<form action="insertarfoto.php" method="post">
+		<form action="insertarfoto.php" method="POST" enctype="multipart/form-data">
 			<div class="form-group">
 				<input type="text" class="form-control" id="usuario" name="usuario" value="<?php 
 						session_start();
@@ -80,7 +80,7 @@
 				<input type="text" class="form-control" placeholder="Nombre de la foto" id="nombre" name="nombre" required="required">
 			</div>
             <div class="form-group">
-				<input type="file" class="form-control" id="foto" name="foto" required="required">
+				<input type="file" id="foto" name="foto" required="required">
 			</div>
 			<div class="form-group">
 				<input type="submit" class="btn btn-primary btn-block btn-lg" value="Subir foto">

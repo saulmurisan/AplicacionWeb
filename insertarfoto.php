@@ -10,8 +10,10 @@
 
     $inserfoto = "INSERT INTO fotos (nombre, fecha, usuario) VALUES ('$nombre', '$fecha', '$usuario')";
 
-    move_uploaded_file($_FILES['foto']['tmp_name'], "usuarios\\".$_REQUEST['nombre'].".jpg");
-
-    mysqli_query($conexion, $inserfoto) or die(mysqli_error($conexion));
+    move_uploaded_file($_FILES["foto"]["tmp_name"], "usuarios\\".$usuario."\\".$nombre.".jpg");
+    if (is_uploaded_file($_FILES['foto']['tmp_name'])) {
+        mysqli_query($conexion, $inserfoto) or die(mysqli_error($conexion));
+    }
+    
     header('location: usulogued.php');
 ?>
