@@ -6,14 +6,10 @@
     $conexion = mysqli_connect("localhost", "root", "", "munozmurillo")
     or die("Problemas en la conexion");
 
-    $consulta = "SELECT nombre FROM fotos WHERE usuario='$usuario'";
+    //$consulta = "SELECT nombre FROM fotos WHERE usuario='$usuario'";
 
-    $inserfoto = "INSERT INTO fotos (nombre, fecha, usuario, valor) VALUES ('$nombre', '$fecha', '$usuario', 1)";
-
+    $inserfoto = "INSERT INTO fotos (nombre, fecha, usuario) VALUES ('$nombre', '$fecha', '$usuario')";
     move_uploaded_file($_FILES["foto"]["tmp_name"], "usuarios\\".$usuario."\\".$nombre.".jpg");
-    if (is_uploaded_file($_FILES['foto']['tmp_name'])) {
-        mysqli_query($conexion, $inserfoto) or die(mysqli_error($conexion));
-    }
-    
+    mysqli_query($conexion, $inserfoto) or die(mysqli_error($conexion));
     header('location: usulogued.php');
 ?>

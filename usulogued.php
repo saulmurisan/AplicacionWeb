@@ -176,10 +176,10 @@ if (isset($_REQUEST["usufoto"])) {
 	$autor = trim(htmlspecialchars($_REQUEST["usufoto"], ENT_QUOTES, "UTF-8"));
 }
 if (isset($_REQUEST["usufoto"]) && !empty($_REQUEST["usufoto"])) {
-	$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos WHERE usuario='$autor' AND valor=1 ORDER BY fecha")
+	$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos WHERE usuario='$autor' ORDER BY fecha")
     or die("Problemas en la consulta:".mysqli_error($conexion));
 } else {
-	$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos WHERE valor=1 ORDER BY fecha")
+	$registros = mysqli_query($conexion, "SELECT usuario, nombre, fecha FROM fotos ORDER BY fecha")
     or die("Problemas en la consulta:".mysqli_error($conexion));
 }
 
