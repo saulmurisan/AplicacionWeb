@@ -8,7 +8,7 @@
 
     $consulta = "SELECT nombre FROM fotos WHERE usuario='$usuario'";
 
-    $inserfoto = "INSERT INTO fotos (nombre, fecha, usuario) VALUES ('$nombre', '$fecha', '$usuario')";
+    $inserfoto = "INSERT INTO fotos (nombre, fecha, usuario, valor) VALUES ('$nombre', '$fecha', '$usuario', 1)";
 
     move_uploaded_file($_FILES["foto"]["tmp_name"], "usuarios\\".$usuario."\\".$nombre.".jpg");
     if (is_uploaded_file($_FILES['foto']['tmp_name'])) {
